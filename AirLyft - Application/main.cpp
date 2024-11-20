@@ -1,6 +1,7 @@
 #include <iostream>
 #include "product.h"
 #include "order.h"
+#include "customer.h"
 using namespace std;
 
 int main()
@@ -12,25 +13,26 @@ int main()
 
     // Create an Order object
     Order order1(1, "John Doe");
-
-    // Add products to the order
     order1.add_product(product1);
     order1.add_product(product2);
-    order1.add_product(product3);
-
-    // Calculate the total cost
     order1.calculate_total();
 
-    // Display the order details
-    cout << "\nOrder Details (Before Status Update):" << endl;
-    order1.display_order_details();
+    // Create a Customer object
+    Customer customer1(1001, "John Doe", "john.doe@example.com");
 
-    // Update the order status
-    order1.update_status("Shipped");
+    // Place an order
+    customer1.place_order(order1);
 
-    // Display the order details after status update
-    cout << "\nOrder Details (After Status Update):" << endl;
-    order1.display_order_details();
+    // View order history
+    cout << "\nViewing Order History:" << endl;
+    customer1.view_order_history();
+
+    // Update contact information
+    customer1.update_contact_info("john.doe@newmail.com");
+
+    // Provide feedback
+    cout << "\nProviding Feedback:" << endl;
+    customer1.give_feedback("Great experience! Loved the quick delivery.");
 
     return 0;
 }
