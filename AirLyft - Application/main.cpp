@@ -1,31 +1,36 @@
 #include <iostream>
 #include "product.h"
+#include "order.h"
 using namespace std;
 
 int main()
 {
-    // Create a Product object
-    Product product(101, "Milk", "Dairy", 2.99, 50);
+    // Create some Product objects
+    Product product1(101, "Milk", "Dairy", 2.99, 50);
+    Product product2(102, "Bread", "Bakery", 1.99, 30);
+    Product product3(103, "Eggs", "Poultry", 3.49, 20);
 
-    // Display product details
-    cout << "Initial Product Details:" << endl;
-    product.display_details();
+    // Create an Order object
+    Order order1(1, "John Doe");
 
-    // Check availability
-    cout << "\nChecking availability: " << (product.check_availability() ? "In Stock" : "Out of Stock") << endl;
+    // Add products to the order
+    order1.add_product(product1);
+    order1.add_product(product2);
+    order1.add_product(product3);
 
-    // Update stock (simulate sale of 10 units)
-    cout << "\nSelling 10 units..." << endl;
-    product.update_stock(-10);
-    product.display_details();
+    // Calculate the total cost
+    order1.calculate_total();
 
-    // Update stock (restock 20 units)
-    cout << "\nRestocking 20 units..." << endl;
-    product.update_stock(20);
-    product.display_details();
+    // Display the order details
+    cout << "\nOrder Details (Before Status Update):" << endl;
+    order1.display_order_details();
 
-    // Check availability again
-    cout << "\nChecking availability: " << (product.check_availability() ? "In Stock" : "Out of Stock") << endl;
+    // Update the order status
+    order1.update_status("Shipped");
+
+    // Display the order details after status update
+    cout << "\nOrder Details (After Status Update):" << endl;
+    order1.display_order_details();
 
     return 0;
 }
